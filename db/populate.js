@@ -10,18 +10,27 @@ if (!url) {
 const { Client } = require("pg");
 
 const sql = `
-create table if not exists messages (
-  id integer primary key generated always as identity,
-  username varchar ( 255 ),
-  text varchar ( 1024 ),
-  added timestamp DEFAULT CURRENT_TIMESTAMP
-);
+  CREATE TABLE IF NOT EXISTS genres (
+      id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+      name VARCHAR ( 255 ) UNIQUE
+  );
 
-insert into messages (username, text) 
-values
-  ('bryan', 'hello world!'),
-  ('odin', 'hello there!'),
-  ('damon', 'hey wasup!');
+  CREATE TABLE IF NOT EXISTS writers (
+      id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+      name VARCHAR ( 255 )
+  );
+
+  CREATE TABLE IF NOT EXISTS books (
+      id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+      title VARCHAR ( 255 ),
+      author_id INTEGER REFERENCES writers ( id ) NULL ON DELETE CASCADE,
+      genre_id INTEGER REFERENCES genres (id) NULL ON DELETE CASCADE,
+      release_date DATE,
+      pages INTEGER
+  );
+
+  INSERT INTO genres (name) 
+    VALUES ("Novel", "Chronicle", "Sci-Fi");
 `;
 
 async function main() {
