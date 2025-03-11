@@ -4,8 +4,8 @@ const pool = require("./pool");
 async function getBooks() {
   const { rows } = await pool.query(
     `SELECT * FROM books b 
-      JOIN writers w ON b.author_id = w.id 
-        JOIN genres g ON b.genre_id = g.id`
+      JOIN writers w ON b.id = w.id 
+        JOIN genres g ON b.id = g.id`
   );
 
   return rows;
@@ -55,7 +55,7 @@ async function getGenreById(id) {
 }
 
 async function addGenre(name) {
-  const { rows } = await pool.query("INSERT INTO genres (name) VALUES ($1)", [
+  const { rows } = await pool.query("INSERT INTO genres (genre_name) VALUES ($1)", [
     name,
   ]);
 
@@ -63,7 +63,7 @@ async function addGenre(name) {
 }
 
 async function editGenreById(id, name) {
-  await pool.query("UPDATE books SET name = $1 WHERE id = $2", [name, id]);
+  await pool.query("UPDATE books SET genre_name = $1 WHERE id = $2", [name, id]);
 }
 
 async function deleteGenreById(id) {
@@ -83,7 +83,7 @@ async function getAuthorById(id) {
 }
 
 async function addAuthor(name) {
-  const { rows } = await pool.query("INSERT INTO writers (name) VALUES ($1)", [
+  const { rows } = await pool.query("INSERT INTO writers (author_name) VALUES ($1)", [
     name,
   ]);
 
@@ -91,7 +91,7 @@ async function addAuthor(name) {
 }
 
 async function editAuthorById(id, name) {
-  await pool.query("UPDATE writers SET name = $1 WHERE id = $2", [name, id]);
+  await pool.query("UPDATE writers SET author_name = $1 WHERE id = $2", [name, id]);
 }
 
 async function deleteAuthorById(id) {
