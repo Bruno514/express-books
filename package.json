@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "dev": "NODE_ENV=development node app.js"
+    "dev": "NODE_ENV=development node --watch app.js",
+    "debug": "NODE_ENV=development node --watch --inspect-brk"
   }
 }
