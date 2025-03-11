@@ -6,5 +6,28 @@
     <link rel="stylesheet" href="/styles.css" />
     <title><%= title %></title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <h1>All Books</h1>
+
+      <section>
+        <a href="/books/add">Add book</a>
+        <a href="/authors/add">Add author</a>
+        <a href="/genres/add">Add genre</a>
+        <ul>
+          <% books.forEach(function(book) {%>
+          <li>
+            <article>
+              <h2><%= book.title %></h2>
+              <h3><%= book.author_name%></h3>
+              <p>Genre: <%= book.genre_name %></p>
+              <p>Pages: <%= book.pages %></p>
+              <p>Release Date: <%= book.release_date%></p>
+            </article>
+          </li>
+          <%}); %>
+        </ul>
+      </section>
+    </main>
+  </body>
 </html>

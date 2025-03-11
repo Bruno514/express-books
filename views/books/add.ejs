@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+
+      <% if (locals.errors) {%>
+      <ul>
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%}); %>
+      </ul>
+      <% }%>
+
+      <form action="/books" method="post">
+        <label for="title">
+          Title
+          <input type="text" name="title" id="title" required />
+        </label>
+
+        <label for="authorId">
+          Author
+          <select name="authorId" id="authorId">
+            <% authors.forEach(author => { %>
+            <option value="<%= author.id%>"><%= author.author_name %></option>
+            <% });%>
+          </select>
+        </label>
+
+        <label for="genreId">
+          Genre
+          <select name="genreId" id="genreId">
+            <% genres.forEach(genre => { %>
+            <option value="<%= genre.id%>"><%= genre.genre_name %></option>
+            <% });%>
+          </select>
+        </label>
+
+        <label for="pages">
+          Pages:
+          <input type="number" name="pages" id="pages" required />
+        </label>
+
+        <label for="releaseDate">
+          Pages:
+          <input type="date" name="releaseDate" id="releaseDate" required />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+
+      <a href="/">Home</a>
+    </main>
+  </body>
+</html>
