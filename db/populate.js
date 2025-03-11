@@ -12,25 +12,27 @@ const { Client } = require("pg");
 const sql = `
   CREATE TABLE IF NOT EXISTS genres (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      name VARCHAR ( 255 ) UNIQUE
+      genre_name VARCHAR ( 255 ) UNIQUE
   );
 
   CREATE TABLE IF NOT EXISTS writers (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      name VARCHAR ( 255 )
+      author_name VARCHAR ( 255 )
   );
 
   CREATE TABLE IF NOT EXISTS books (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       title VARCHAR ( 255 ),
-      author_id INTEGER REFERENCES writers ( id ) NULL ON DELETE CASCADE,
-      genre_id INTEGER REFERENCES genres (id) NULL ON DELETE CASCADE,
+      author_id INTEGER REFERENCES writers ( id ) ON DELETE CASCADE,
+      genre_id INTEGER REFERENCES genres (id) ON DELETE CASCADE,
       release_date DATE,
       pages INTEGER
   );
 
-  INSERT INTO genres (name) 
-    VALUES ("Novel", "Chronicle", "Sci-Fi");
+  INSERT INTO genres (genre_name) VALUES ('Novel'), ('Chronicle'), ('Sci-Fi');
+
+  INSERT INTO writers (author_name) VALUES ('João'), ('Pedro'), ('Luis');
+
 `;
 
 async function main() {
