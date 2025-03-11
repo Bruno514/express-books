@@ -12,12 +12,17 @@ const { Client } = require("pg");
 const sql = `
   CREATE TABLE IF NOT EXISTS genres (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      genre_name VARCHAR ( 255 ) UNIQUE
+      genre_name VARCHAR ( 255 ) UNIQUE NOT NULL,
+      description VARCHAR ( 255) UNIQUE
   );
 
   CREATE TABLE IF NOT EXISTS writers (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      author_name VARCHAR ( 255 )
+      author_name VARCHAR ( 255 ) NOT NULL,
+      bio VARCHAR (1000),
+      nationality VARCHAR (3)
+      birth_date DATE,
+      death_date DATE
   );
 
   CREATE TABLE IF NOT EXISTS books (
