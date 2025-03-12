@@ -1,10 +1,10 @@
 const db = require("../db/queries");
 
-async function indexGet(req, res) {
+exports.getIndex = async (req, res) => {
+  const books = await db.getBooks();
+
   res.render("index", {
     title: "Index Page",
-    format: format,
+    books: books,
   });
-}
-
-module.exports = { indexGet };
+};
