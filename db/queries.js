@@ -71,6 +71,9 @@ async function editGenreById(id, name, description) {
 }
 
 async function deleteGenreById(id) {
+  // Remove references first
+  await pool.query("UPDATE books SET genre_id=NULL WHERE genre_id = $1", [id]);
+  // Then, delete the genre
   await pool.query("DELETE FROM genres WHERE id = $1", [id]);
 }
 
@@ -113,6 +116,11 @@ async function editAuthorById(
 }
 
 async function deleteAuthorById(id) {
+  // Remove references first
+  await pool.query("UPDATE books SET author_id=NULL WHERE author_id = $1", [
+    id,
+  ]);
+  // Then, delete
   await pool.query("DELETE FROM writers WHERE id = $1", [id]);
 }
 
