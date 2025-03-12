@@ -19,7 +19,7 @@ const sql = `
   CREATE TABLE IF NOT EXISTS writers (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       author_name VARCHAR ( 255 ) NOT NULL,
-      bio VARCHAR (1000),
+      bio VARCHAR (1000) NOT NULL,
       nationality VARCHAR (3)
       birth_date DATE,
       death_date DATE

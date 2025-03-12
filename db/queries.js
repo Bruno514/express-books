@@ -54,16 +54,20 @@ async function getGenreById(id) {
   return rows;
 }
 
-async function addGenre(name) {
-  const { rows } = await pool.query("INSERT INTO genres (genre_name) VALUES ($1)", [
-    name,
-  ]);
+async function addGenre(name, description) {
+  const { rows } = await pool.query(
+    "INSERT INTO genres (genre_name, description) VALUES ($1)",
+    [name, description]
+  );
 
   return rows;
 }
 
-async function editGenreById(id, name) {
-  await pool.query("UPDATE books SET genre_name = $1 WHERE id = $2", [name, id]);
+async function editGenreById(id, name, description) {
+  await pool.query(
+    "UPDATE books SET genre_name = $1, description = $2 WHERE id = $3",
+    [name, description, id]
+  );
 }
 
 async function deleteGenreById(id) {
@@ -82,16 +86,30 @@ async function getAuthorById(id) {
   ]);
 }
 
-async function addAuthor(name) {
-  const { rows } = await pool.query("INSERT INTO writers (author_name) VALUES ($1)", [
-    name,
-  ]);
+async function addAuthor(name, bio, nationality, birthDate, deathDate) {
+  const { rows } = await pool.query(
+    "INSERT INTO writers (author_name, bio, nationality, birth_date, death_date) VALUES ($1, $2, $3, $4, $5)",
+    [name, bio, nationality, birthDate, deathDate]
+  );
 
   return rows;
 }
 
-async function editAuthorById(id, name) {
-  await pool.query("UPDATE writers SET author_name = $1 WHERE id = $2", [name, id]);
+async function editAuthorById(
+  id,
+  name,
+  bio,
+  nationality,
+  birthDate,
+  deathDate
+) {
+  await pool.query(
+    `UPDATE writers 
+      SET author_name = $1, bio = $2, nationality = $3, 
+      birth_date = $4, death_date = $5 
+        WHERE id = $6`,
+    [name, bio, nationality, birthDate, deathDate, id]
+  );
 }
 
 async function deleteAuthorById(id) {
