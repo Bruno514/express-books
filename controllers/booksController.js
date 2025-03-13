@@ -18,10 +18,15 @@ const bookValidator = [
   body("genreId").trim().isNumeric().withMessage(`Genre ID is invalid.`),
   body("releaseDate")
     .trim()
+    .escape()
     .isDate({ format: "yyyy-mm-dd" })
     .withMessage(`Release date ${dateError}`)
-    .escape(),
-  body("pages").trim().isNumeric().withMessage(`Pages ${numericError}`),
+    .optional({ values: "falsy" }),
+  body("pages")
+    .trim()
+    .isNumeric()
+    .withMessage(`Pages ${numericError}`)
+    .optional({ values: "falsy" }),
 ];
 
 exports.getBookAdd = [
@@ -30,6 +35,39 @@ exports.getBookAdd = [
       title: "Add new book",
       authors: await db.getAuthors(),
       genres: await db.getGenres(),
+    });
+  },
+];
+
+exports.getBookEdit = [
+  async (req, res) => {
+    const { id } = req.params;
+
+    res.render("books/edit", {
+      title: "Edit book",
+      book: await db.getBookById(id),
+      authors: await db.getAuthors(),
+      genres: await db.getGenres(),
+    });
+  },
+];
+
+exports.getBookView = [
+  async (req, res) => {
+    const { id } = req.params;
+
+    res.render("books/view", {
+      title: "Viewing book",
+      book: await db.getBookById(id),
+    });
+  },
+];
+
+exports.getBookIndex = [
+  async (req, res) => {
+    res.render("books/index", {
+      title: "All books",
+      books: await db.getBooks(),
     });
   },
 ];
@@ -49,8 +87,28 @@ exports.postBook = [
     }
 
     const { title, authorId, genreId, pages, releaseDate } = req.body;
-    db.addBook(title, authorId, genreId, pages, releaseDate);
+    await db.addBook(title, authorId, genreId, pages, releaseDate);
 
     res.redirect("/");
+  },
+];
+
+exports.putBook = [
+  bookValidator,
+  async function putBook(req, res) {
+    const { id } = req.params;
+    console.log("Edited");
+    const { title, authorId, genreId, pages, releaseDate } = req.body;
+
+    await db.editBookById(
+      id,
+      title,
+      authorId,
+      genreId,
+      pages,
+      releaseDate || null
+    );
+
+    res.redirect(`/books/view/${id}`);
   },
 ];

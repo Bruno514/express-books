@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+
+      <section>
+        <article>
+          <h2><%= book.title %></h2>
+          <p><%= book.author_name%></p>
+          <p>Genre: <%= book.genre_name %></p>
+          <p>Pages: <%= book.pages %></p>
+          <p>Release Date: <%= book.release_date%></p>
+        </article>
+      </section>
+      <a href="/">Home</a>
+    </main>
+  </body>
+</html>

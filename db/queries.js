@@ -3,9 +3,9 @@ const pool = require("./pool");
 // Books queries
 async function getBooks() {
   const { rows } = await pool.query(
-    `SELECT * FROM books b 
-      JOIN writers w ON b.id = w.id 
-        JOIN genres g ON b.id = g.id`
+    `SELECT b.id, b.title, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
+      JOIN writers w ON b.author_id = w.id 
+        JOIN genres g ON b.genre_id = g.id`
   );
 
   return rows;
@@ -13,14 +13,14 @@ async function getBooks() {
 
 async function getBookById(id) {
   const { rows } = await pool.query(
-    `SELECT * FROM books b 
+    `SELECT  b.id, b.title, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
       JOIN writers w ON b.author_id = w.id 
         JOIN genres g ON b.genre_id = g.id 
-          WHERE id = $1`,
+          WHERE b.id = $1`,
     [id]
   );
 
-  return rows;
+  return rows[0];
 }
 
 async function addBook(title, authorId, genreId, pages, releaseDate) {
@@ -51,7 +51,7 @@ async function getGenres() {
 
 async function getGenreById(id) {
   const { rows } = await pool.query("SELECT * FROM genres WHERE id = $1", [id]);
-  return rows;
+  return rows[0];
 }
 
 async function addGenre(name, description) {
@@ -87,6 +87,8 @@ async function getAuthorById(id) {
   const { rows } = await pool.query("SELECT * FROM writers WHERE id = $1", [
     id,
   ]);
+
+  return rows[0]
 }
 
 async function addAuthor(name, bio, nationality, birthDate, deathDate) {

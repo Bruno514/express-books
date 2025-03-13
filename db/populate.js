@@ -27,9 +27,9 @@ const sql = `
 
   CREATE TABLE IF NOT EXISTS books (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      title VARCHAR ( 255 ),
-      author_id INTEGER REFERENCES writers ( id ) ON DELETE CASCADE,
-      genre_id INTEGER REFERENCES genres (id) ON DELETE CASCADE,
+      title VARCHAR ( 255 ) NOT NULL,
+      author_id INTEGER REFERENCES writers ( id ) ON DELETE CASCADE NOT NULL,
+      genre_id INTEGER REFERENCES genres (id) ON DELETE CASCADE NOT NULL,
       release_date DATE,
       pages INTEGER
   );

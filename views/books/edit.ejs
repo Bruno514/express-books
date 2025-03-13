@@ -17,15 +17,21 @@
       </ul>
       <% }%>
 
-      <form action="/books" method="post">
+      <form action="/books/<%= book.id %>?_method=PUT" method="post">
         <label for="title">
           * Title
-          <input type="text" name="title" id="title" required />
+          <input
+            value="<%= book.title %>"
+            type="text"
+            name="title"
+            id="title"
+            required
+          />
         </label>
 
         <label for="authorId">
           * Author
-          <select name="authorId" id="authorId">
+          <select value="<%= book.author_id %>" name="authorId" id="authorId">
             <% authors.forEach(author => { %>
             <option value="<%= author.id%>"><%= author.author_name %></option>
             <% });%>
@@ -33,8 +39,8 @@
         </label>
 
         <label for="genreId">
-          Genre
-          <select name="genreId" id="genreId">
+          * Genre
+          <select value="<%= book.genre_id %>" name="genreId" id="genreId">
             <% genres.forEach(genre => { %>
             <option value="<%= genre.id%>"><%= genre.genre_name %></option>
             <% });%>
@@ -43,12 +49,22 @@
 
         <label for="pages">
           Pages:
-          <input type="number" name="pages" id="pages" />
+          <input
+            value="<%= book.pages %>"
+            type="number"
+            name="pages"
+            id="pages"
+          />
         </label>
 
         <label for="releaseDate">
           Pages:
-          <input type="date" name="releaseDate" id="releaseDate" />
+          <input
+            value="<%= book.release_date %>"
+            type="date"
+            name="releaseDate"
+            id="releaseDate"
+          />
         </label>
         <button type="submit">Submit</button>
       </form>

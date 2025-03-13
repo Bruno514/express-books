@@ -3,7 +3,11 @@ const booksController = require("../controllers/booksController");
 
 const booksRouter = Router();
 
+booksRouter.get("/", booksController.getBookIndex);
 booksRouter.get("/add", booksController.getBookAdd);
-booksRouter.post("/", booksController.postBook)
+booksRouter.get("/edit/:id", booksController.getBookEdit);
+booksRouter.get("/view/:id", booksController.getBookView);
+booksRouter.post("/", booksController.postBook);
+booksRouter.put("/:id", booksController.putBook);
 
 module.exports = booksRouter;
