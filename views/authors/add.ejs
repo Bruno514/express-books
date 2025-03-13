@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+
+      <% if (locals.errors) {%>
+      <ul>
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%}); %>
+      </ul>
+      <% }%>
+
+      <form action="/authors" method="post">
+        <label for="name">
+          * Author name:
+          <input type="text" name="name" id="name" maxlength="255" required />
+        </label>
+
+        <label for="bio">
+          * Bio:
+          <textarea name="bio" id="bio" maxlength="1000" required />
+          </textarea>
+        </label>
+
+        <label for="country">
+          Country (optional)
+          <select value="" name="country" id="country">
+            <% countries.forEach(country => { %>
+            <option value="<%= country %>"><%= country %></option>
+            <% });%>
+          </select>
+        </label>
+
+        <label for="birthDate">
+          Birth: 
+          <input type="date" name="birthDate" id="birthDate" />
+        </label>
+
+        <label for="deathDate">
+          Death (?):
+          <input type="date" name="deathDate" id="deathDate" />
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <a href="/">Home</a>
+    </main>
+  </body>
+</html>
