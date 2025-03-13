@@ -97,7 +97,6 @@ exports.putBook = [
   bookValidator,
   async function putBook(req, res) {
     const { id } = req.params;
-    console.log("Edited");
     const { title, authorId, genreId, pages, releaseDate } = req.body;
 
     await db.editBookById(
