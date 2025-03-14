@@ -56,7 +56,7 @@ async function getGenreById(id) {
 
 async function addGenre(name, description) {
   const { rows } = await pool.query(
-    "INSERT INTO genres (genre_name, description) VALUES ($1)",
+    "INSERT INTO genres (genre_name, description) VALUES ($1, $2)",
     [name, description]
   );
 
@@ -88,7 +88,7 @@ async function getAuthorById(id) {
     id,
   ]);
 
-  return rows[0]
+  return rows[0];
 }
 
 async function addAuthor(name, bio, nationality, birthDate, deathDate) {
