@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+
+      <% if (locals.errors) {%>
+      <ul>
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%}); %>
+      </ul>
+      <% }%>
+
+      <form action="/genres/<%= genre.id %>?_method=PUT" method="post">
+        <label for="name">
+          * Genre:
+          <input
+            value="<%= genre.genre_name %>"
+            type="text"
+            name="name"
+            id="name"
+            maxlength="255"
+            required
+          />
+        </label>
+
+        <label for="bio">
+          Description:
+          <textarea name="description" id="description" maxlength="255">
+            <%= genre.description %>
+          </textarea>
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <a href="/">Home</a>
+    </main>
+  </body>
+</html>

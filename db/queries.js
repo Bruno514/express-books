@@ -65,14 +65,14 @@ async function addGenre(name, description) {
 
 async function editGenreById(id, name, description) {
   await pool.query(
-    "UPDATE books SET genre_name = $1, description = $2 WHERE id = $3",
+    "UPDATE genres SET genre_name = $1, description = $2 WHERE id = $3",
     [name, description, id]
   );
 }
 
 async function deleteGenreById(id) {
   // Remove references first
-  await pool.query("UPDATE books SET genre_id=NULL WHERE genre_id = $1", [id]);
+  await pool.query("UPDATE genres SET genre_id=NULL WHERE genre_id = $1", [id]);
   // Then, delete the genre
   await pool.query("DELETE FROM genres WHERE id = $1", [id]);
 }
