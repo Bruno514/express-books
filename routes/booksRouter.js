@@ -9,5 +9,6 @@ booksRouter.get("/edit/:id", booksController.getBookEdit);
 booksRouter.get("/view/:id", booksController.getBookView);
 booksRouter.post("/", booksController.postBook);
 booksRouter.put("/:id", booksController.putBook);
+booksRouter.delete("/:id", booksController.deleteBook);
 
 module.exports = booksRouter;

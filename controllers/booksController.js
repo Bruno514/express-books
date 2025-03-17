@@ -1,3 +1,4 @@
+const { redirect } = require("express/lib/response");
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
@@ -111,3 +112,11 @@ exports.putBook = [
     res.redirect(`/books/view/${id}`);
   },
 ];
+
+exports.deleteBook = async (req, res) => {
+  const { id } = req.params;
+
+  await db.deleteBookById(id);
+
+  res.redirect("/");
+};
