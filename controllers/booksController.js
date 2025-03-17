@@ -88,7 +88,7 @@ exports.postBook = [
     }
 
     const { title, authorId, genreId, pages, releaseDate } = req.body;
-    await db.addBook(title, authorId, genreId, pages, releaseDate);
+    await db.addBook(title, authorId, genreId, pages || null, releaseDate || null);
 
     res.redirect("/");
   },

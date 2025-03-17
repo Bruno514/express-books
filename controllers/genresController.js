@@ -65,7 +65,7 @@ exports.postGenre = [
     }
 
     const { name, descritpion } = req.body;
-    await db.addGenre(name, descritpion);
+    await db.addGenre(name, descritpion || null);
 
     res.redirect("/");
   },
@@ -86,7 +86,7 @@ exports.putGenre = [
     const { id } = req.params;
     const { name, descritpion } = req.body;
 
-    await db.editGenreById(id, name, descritpion);
+    await db.editGenreById(id, name, descritpion || null);
 
     res.redirect(`/genres/view/${id}`);
   },
