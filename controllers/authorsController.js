@@ -52,7 +52,7 @@ exports.getAuthorsView = async (req, res) => {
   const { id } = req.params;
   const author = await db.getAuthorById(id);
 
-  res.render("authors/view", { title: "Viewing author" , author: author });
+  res.render("authors/view", { title: "Viewing author", author: author });
 };
 
 exports.getAuthorsAdd = async (req, res) => {
@@ -117,3 +117,11 @@ exports.putAuthor = [
     res.redirect(`/authors/view/${id}`);
   },
 ];
+
+exports.deleteAuthor = async (req, res) => {
+  const { id } = req.params;
+
+  await db.deleteAuthorById(id);
+
+  res.redirect("/");
+};
