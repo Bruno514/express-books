@@ -1,0 +1,8 @@
+<article>
+  <h2><%= genre.genre_name %></h2>
+  <% if (genre.description) {%>
+  <p><%= genre.description %></p>
+  <% } else {%>
+  <p>No description for this genre</p>
+  <% } %> <%- include("./actions", {route: "genres", id: genre.id}) %>
+</article>

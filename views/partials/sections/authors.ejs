@@ -1,0 +1,8 @@
+<section>
+  <h1>Authors</h1>
+  <ul>
+    <% authors.forEach(author => { %>
+    <li><%- include("../authorCard", {author: author}) %></li>
+    <%}); %>
+  </ul>
+</section>

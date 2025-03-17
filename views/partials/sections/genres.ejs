@@ -1,0 +1,8 @@
+<section>
+  <h1>Genres</h1>
+  <ul>
+    <% genres.forEach(genre => { %>
+    <li><%- include("../genreCard", {genre: genre}) %></li>
+    <% }); %>
+  </ul>
+</section>

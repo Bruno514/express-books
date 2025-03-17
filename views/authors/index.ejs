@@ -1,33 +1,14 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <title><%= title %></title>
-  </head>
+  <%- include("../partials/head") %>
+
   <body>
     <main>
       <h1><%= title %></h1>
 
-      <section>
-        <ul>
-          <% authors.forEach(function(author) {%>
-          <li>
-            <article>
-              <h2><%= author.author_name %></h2>
-              <p>Bio: <%= author.bio %></p>
-              <p>Nationality: <%= author.nationality %></p>
-              <p>Birth Date: <%= author.birth_date%></p>
-              <p>Death Date: <%= author.death_date%></p>
-              <a href="/authors/view/<%= author.id %>">View</a>
-              <a href="/authors/edit/<%= author.id %>">Edit</a>
-            </article>
-          </li>
-          <%}); %>
-        </ul>
-      </section>
+      <%- include("../partials/sections/authors", {author: author}) %>
+
       <a href="/">Home</a>
     </main>
   </body>

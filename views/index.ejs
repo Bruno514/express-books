@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <title><%= title %></title>
-  </head>
+  <%- include('partials/head') %>
   <body>
     <main>
       <h1><%= title %></h1>
@@ -14,63 +9,9 @@
       <a href="/authors/add">Add author</a>
       <a href="/genres/add">Add genre</a>
 
-      <section>
-        <h1>Books</h1>
-        <ul>
-          <% books.forEach(function(book) {%>
-          <li>
-            <article>
-              <h2><%= book.title %></h2>
-              <p><%= book.author_name%></p>
-              <p>Genre: <%= book.genre_name %></p>
-              <p>Pages: <%= book.pages %></p>
-              <p>Release Date: <%= book.release_date%></p>
-
-              <a href="/books/view/<%= book.id %>">View</a>
-              <a href="/books/edit/<%= book.id %>">Edit</a>
-            </article>
-          </li>
-          <%}); %>
-        </ul>
-      </section>
-
-      <section>
-        <h1>Genres</h1>
-        <ul>
-          <% genres.forEach(genre => { %>
-          <li>
-            <article>
-              <h2><%= genre.genre_name %></h2>
-              <% if (genre.description) {%>
-              <p><%= genre.description %></p>
-              <% } else {%>
-              <p>No description for this genre</p>
-              <% } %>
-              <a href="/genres/view/<%= genre.id %>">View</a>
-              <a href="/genres/edit/<%= genre.id %>">Edit</a>
-            </article>
-          </li>
-          <% }); %>
-        </ul>
-      </section>
-      <section>
-        <h1>Authors</h1>
-        <ul>
-          <% authors.forEach(author => { %>
-          <li>
-            <article>
-              <h2><%= author.author_name %></h2>
-              <p>Bio: <%= author.bio %></p>
-              <p>Nationality: <%= author.nationality %></p>
-              <p>Birth Date: <%= author.birth_date%></p>
-              <p>Death Date: <%= author.death_date%></p>
-              <a href="/authors/view/<%= author.id %>">View</a>
-              <a href="/authors/edit/<%= author.id %>">Edit</a>
-            </article>
-          </li>
-          <%}); %>
-        </ul>
-      </section>
+      <%- include("partials/sections/books") %> <%-
+      include("partials/sections/genres") %> <%-
+      include("partials/sections/authors") %>
     </main>
   </body>
 </html>

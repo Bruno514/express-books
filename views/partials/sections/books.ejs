@@ -1,0 +1,8 @@
+<section>
+  <h1>Books</h1>
+  <ul>
+    <% books.forEach(function(book) {%>
+    <li><%- include("../bookCard", {book: book}) %></li>
+    <%}); %>
+  </ul>
+</section>
