@@ -9,5 +9,6 @@ genresRouter.get("/view/:id", genresController.getGenreView);
 genresRouter.get("/edit/:id", genresController.getGenreEdit);
 genresRouter.post("/", genresController.postGenre);
 genresRouter.put("/:id", genresController.putGenre);
+genresRouter.delete("/:id", genresController.deleteGenre);
 
 module.exports = genresRouter;

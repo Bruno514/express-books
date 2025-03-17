@@ -91,3 +91,11 @@ exports.putGenre = [
     res.redirect(`/genres/view/${id}`);
   },
 ];
+
+exports.deleteGenre = async (req, res) => {
+  const { id } = req.params;
+
+  await db.deleteGenreById(id);
+
+  res.redirect("/");
+};
