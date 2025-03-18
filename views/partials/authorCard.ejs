@@ -1,9 +1,12 @@
-<article>
+<article class="card">
   <h2><%= author.author_name %></h2>
-  <p>Bio: <%= author.bio %></p>
-  <p>Nationality: <%= author.nationality %></p>
-  <p>Birth Date: <%= author.birth_date%></p>
-  <p>Death Date: <%= author.death_date%></p>
+  <p><%= author.bio %></p>
+
+  <section class="author-dates">
+    <p><img src="/svg/star.svg" alt="" /><%= author.birth_date%></p>
+    <span>&nbsp - &nbsp;</span>
+    <p><img src="/svg/skull.svg" alt="" /> <%= author.death_date%></p>
+  </section>
 
   <%- include("./actions", {route: "authors", id: author.id}) %>
 </article>
