@@ -3,7 +3,7 @@ const pool = require("./pool");
 // Books queries
 async function getBooks() {
   const { rows } = await pool.query(
-    `SELECT b.id, b.title, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
+    `SELECT b.id, b.title, b.summary, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
       JOIN writers w ON b.author_id = w.id 
         JOIN genres g ON b.genre_id = g.id`
   );
@@ -13,7 +13,7 @@ async function getBooks() {
 
 async function getBookById(id) {
   const { rows } = await pool.query(
-    `SELECT  b.id, b.title, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
+    `SELECT  b.id, b.title, b.summary, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
       JOIN writers w ON b.author_id = w.id 
         JOIN genres g ON b.genre_id = g.id 
           WHERE b.id = $1`,
@@ -23,19 +23,27 @@ async function getBookById(id) {
   return rows[0];
 }
 
-async function addBook(title, authorId, genreId, pages, releaseDate) {
+async function addBook(title, summary, authorId, genreId, pages, releaseDate) {
   await pool.query(
-    `INSERT INTO books (title, author_id, genre_id, pages, release_date) 
-    VALUES ($1, $2, $3, $4, $5)`,
-    [title, authorId, genreId, pages, releaseDate]
+    `INSERT INTO books (title, summary, author_id, genre_id, pages, release_date) 
+    VALUES ($1, $2, $3, $4, $5, $6)`,
+    [title, summary, authorId, genreId, pages, releaseDate]
   );
 }
 
-async function editBookById(id, title, authorId, genreId, pages, releaseDate) {
+async function editBookById(
+  id,
+  title,
+  summary,
+  authorId,
+  genreId,
+  pages,
+  releaseDate
+) {
   await pool.query(
-    `UPDATE books SET title = $1, author_id = $2, genre_id = $3, pages = $4, release_date = $5
+    `UPDATE books SET title = $1, summary = $7, author_id = $2, genre_id = $3, pages = $4, release_date = $5
       WHERE id = $6;`,
-    [title, authorId, genreId, pages, releaseDate, id]
+    [title, authorId, genreId, pages, releaseDate, id, summary]
   );
 }
 

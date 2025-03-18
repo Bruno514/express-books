@@ -26,6 +26,11 @@
           />
         </label>
 
+        <label for="summary">
+          * Summary
+          <textarea name="summary" id="summary"><%= book.summary %></textarea>
+        </label>
+
         <label for="authorId">
           * Author
           <select value="<%= book.author_id %>" name="authorId" id="authorId">

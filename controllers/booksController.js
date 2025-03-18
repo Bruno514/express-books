@@ -15,6 +15,13 @@ const bookValidator = [
     .notEmpty()
     .withMessage(`Title ${emptyError}`)
     .escape(),
+  body("summary")
+    .trim()
+    .isLength({ max: 512 })
+    .withMessage(`Summary ${lengthError}`)
+    .notEmpty()
+    .withMessage(`Summary ${emptyError}`)
+    .escape(),
   body("authorId").trim().isNumeric().withMessage(`Author ID is invalid.`),
   body("genreId").trim().isNumeric().withMessage(`Genre ID is invalid.`),
   body("releaseDate")
@@ -87,8 +94,15 @@ exports.postBook = [
       });
     }
 
-    const { title, authorId, genreId, pages, releaseDate } = req.body;
-    await db.addBook(title, authorId, genreId, pages || null, releaseDate || null);
+    const { title, summary, authorId, genreId, pages, releaseDate } = req.body;
+    await db.addBook(
+      title,
+      summary,
+      authorId,
+      genreId,
+      pages || null,
+      releaseDate || null
+    );
 
     res.redirect("/");
   },
@@ -98,11 +112,12 @@ exports.putBook = [
   bookValidator,
   async function putBook(req, res) {
     const { id } = req.params;
-    const { title, authorId, genreId, pages, releaseDate } = req.body;
+    const { title, summary, authorId, genreId, pages, releaseDate } = req.body;
 
     await db.editBookById(
       id,
       title,
+      summary,
       authorId,
       genreId,
       pages,
