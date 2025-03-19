@@ -33,19 +33,29 @@
 
         <label for="authorId">
           * Author
-          <select value="<%= book.author_id %>" name="authorId" id="authorId">
-            <% authors.forEach(author => { %>
+          <select name="authorId" id="authorId">
+            <% authors.forEach(author => { %> <% if (author.id ==
+            book.author_id) { %>
+            <option selected value="<%= author.id%>">
+              <%= author.author_name %>
+            </option>
+            <% } else { %>
             <option value="<%= author.id%>"><%= author.author_name %></option>
-            <% });%>
+            <% } %> <% });%>
           </select>
         </label>
 
         <label for="genreId">
           * Genre
-          <select value="<%= book.genre_id %>" name="genreId" id="genreId">
-            <% genres.forEach(genre => { %>
+          <select selected="<%= book.genre_id %>" name="genreId" id="genreId">
+            <% genres.forEach(genre => { %> <% if (genre.id == book.genre_id) {
+            %>
+            <option selected value="<%= genre.id%>">
+              <%= genre.genre_name %>
+            </option>
+            <% } else { %>
             <option value="<%= genre.id%>"><%= genre.genre_name %></option>
-            <% });%>
+            <% } %> <% });%>
           </select>
         </label>
 
