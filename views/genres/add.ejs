@@ -4,8 +4,6 @@
 
   <body>
     <main>
-      <h1><%= title %></h1>
-
       <% if (locals.errors) {%>
       <ul>
         <% errors.forEach(error => { %>
@@ -15,12 +13,13 @@
       <% }%>
 
       <form action="/genres" method="post">
-        <label for="name">
-          * Genre:
+        <h1><%= title %></h1>
+        <label class="required" for="name">
+          Genre:
           <input type="text" name="name" id="name" maxlength="255" required />
         </label>
 
-        <label for="bio">
+        <label for="description">
           Description:
           <textarea name="description" id="description" maxlength="255">
           </textarea>

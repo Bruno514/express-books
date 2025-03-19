@@ -4,8 +4,6 @@
 
   <body>
     <main>
-      <h1><%= title %></h1>
-
       <% if (locals.errors) {%>
       <ul>
         <% errors.forEach(error => { %>
@@ -15,8 +13,10 @@
       <% }%>
 
       <form action="/genres/<%= genre.id %>?_method=PUT" method="post">
-        <label for="name">
-          * Genre:
+        <h1><%= title %></h1>
+
+        <label class="required" for="name">
+          Genre:
           <input
             value="<%= genre.genre_name %>"
             type="text"
@@ -27,7 +27,7 @@
           />
         </label>
 
-        <label for="bio">
+        <label for="description">
           Description:
           <textarea name="description" id="description" maxlength="255">
             <%= genre.description %>

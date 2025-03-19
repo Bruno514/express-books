@@ -1,8 +1,8 @@
 <div class="actions-box">
-  <a href="/<%= route %>/edit/<%= id %>">Edit</a>
-  <a href="/<%= route %>/view/<%= id%>">View</a>
+  <a class="button" href="/<%= route %>/edit/<%= id %>">Edit</a>
+  <a class="button" href="/<%= route %>/view/<%= id%>">View</a>
 
-  <form action="/<%= route %>/<%= id %>?_method=DELETE" method="post">
-    <button type="submit">Delete</button>
+  <form class="delete" action="/<%= route %>/<%= id %>?_method=DELETE" method="post">
+    <button class="danger" type="submit">Delete</button>
   </form>
 </div>

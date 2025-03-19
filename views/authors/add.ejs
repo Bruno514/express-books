@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("../partials/head") %>
-  
+
   <body>
     <main>
-      <h1><%= title %></h1>
-
       <% if (locals.errors) {%>
       <ul>
         <% errors.forEach(error => { %>
@@ -15,18 +13,19 @@
       <% }%>
 
       <form action="/authors" method="post">
-        <label for="name">
-          * Author name:
+        <h1><%= title %></h1>
+        <label class="required" for="name">
+          Author name:
           <input type="text" name="name" id="name" maxlength="255" required />
         </label>
 
-        <label for="bio">
-          * Bio:
+        <label class="required" for="bio">
+          Bio:
           <textarea name="bio" id="bio" maxlength="1000" required> </textarea>
         </label>
 
         <label for="country">
-          Country (optional)
+          Country
           <select value="" name="country" id="country">
             <% countries.forEach(country => { %>
             <option value="<%= country %>"><%= country %></option>
@@ -34,16 +33,16 @@
           </select>
         </label>
 
-        <label for="birthDate">
-          Birth:
-          <input type="date" name="birthDate" id="birthDate" />
-        </label>
-
-        <label for="deathDate">
-          Death (?):
-          <input type="date" name="deathDate" id="deathDate" />
-        </label>
-
+        <div class="form-row">
+          <label for="birthDate">
+            Birth:
+            <input type="date" name="birthDate" id="birthDate" />
+          </label>
+          <label for="deathDate">
+            Death (?):
+            <input type="date" name="deathDate" id="deathDate" />
+          </label>
+        </div>
         <button type="submit">Submit</button>
       </form>
 

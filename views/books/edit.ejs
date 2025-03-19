@@ -4,8 +4,6 @@
 
   <body>
     <main>
-      <h1><%= title %></h1>
-
       <% if (locals.errors) {%>
       <ul>
         <% errors.forEach(error => { %>
@@ -15,8 +13,10 @@
       <% }%>
 
       <form action="/books/<%= book.id %>?_method=PUT" method="post">
-        <label for="title">
-          * Title
+        <h1><%= title %></h1>
+
+        <label class="required" for="title">
+          Title
           <input
             value="<%= book.title %>"
             type="text"
@@ -26,58 +26,62 @@
           />
         </label>
 
-        <label for="summary">
-          * Summary
+        <div class="form-row">
+          <label class="required" for="authorId">
+            Author
+            <select name="authorId" id="authorId">
+              <% authors.forEach(author => { %> <% if (author.id ==
+              book.author_id) { %>
+              <option selected value="<%= author.id%>">
+                <%= author.author_name %>
+              </option>
+              <% } else { %>
+              <option value="<%= author.id%>"><%= author.author_name %></option>
+              <% } %> <% });%>
+            </select>
+          </label>
+
+          <label class="required" for="genreId">
+            Genre
+            <select selected="<%= book.genre_id %>" name="genreId" id="genreId">
+              <% genres.forEach(genre => { %> <% if (genre.id == book.genre_id)
+              { %>
+              <option selected value="<%= genre.id%>">
+                <%= genre.genre_name %>
+              </option>
+              <% } else { %>
+              <option value="<%= genre.id%>"><%= genre.genre_name %></option>
+              <% } %> <% });%>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label for="pages">
+            Pages:
+            <input
+              value="<%= book.pages %>"
+              type="number"
+              name="pages"
+              id="pages"
+            />
+          </label>
+          <label for="releaseDate">
+            Pages:
+            <input
+              value="<%= book.release_date %>"
+              type="date"
+              name="releaseDate"
+              id="releaseDate"
+            />
+          </label>
+        </div>
+
+        <label class="required" for="summary">
+          Summary
           <textarea name="summary" id="summary"><%= book.summary %></textarea>
         </label>
 
-        <label for="authorId">
-          * Author
-          <select name="authorId" id="authorId">
-            <% authors.forEach(author => { %> <% if (author.id ==
-            book.author_id) { %>
-            <option selected value="<%= author.id%>">
-              <%= author.author_name %>
-            </option>
-            <% } else { %>
-            <option value="<%= author.id%>"><%= author.author_name %></option>
-            <% } %> <% });%>
-          </select>
-        </label>
-
-        <label for="genreId">
-          * Genre
-          <select selected="<%= book.genre_id %>" name="genreId" id="genreId">
-            <% genres.forEach(genre => { %> <% if (genre.id == book.genre_id) {
-            %>
-            <option selected value="<%= genre.id%>">
-              <%= genre.genre_name %>
-            </option>
-            <% } else { %>
-            <option value="<%= genre.id%>"><%= genre.genre_name %></option>
-            <% } %> <% });%>
-          </select>
-        </label>
-
-        <label for="pages">
-          Pages:
-          <input
-            value="<%= book.pages %>"
-            type="number"
-            name="pages"
-            id="pages"
-          />
-        </label>
-
-        <label for="releaseDate">
-          Pages:
-          <input
-            value="<%= book.release_date %>"
-            type="date"
-            name="releaseDate"
-            id="releaseDate"
-          />
-        </label>
         <button type="submit">Submit</button>
       </form>
 
