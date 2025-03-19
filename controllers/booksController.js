@@ -50,10 +50,12 @@ exports.getBookAdd = [
 exports.getBookEdit = [
   async (req, res) => {
     const { id } = req.params;
+    const book = await db.getBookById(id);
+    console.log(book)
 
     res.render("books/edit", {
       title: "Edit book",
-      book: await db.getBookById(id),
+      book: book,
       authors: await db.getAuthors(),
       genres: await db.getGenres(),
     });
@@ -120,7 +122,7 @@ exports.putBook = [
       summary,
       authorId,
       genreId,
-      pages,
+      pages || null,
       releaseDate || null
     );
 

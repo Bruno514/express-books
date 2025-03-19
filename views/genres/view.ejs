@@ -2,12 +2,15 @@
 
 <html lang="en">
   <%- include("../partials/head") %>
-  
+
   <body>
     <main>
       <h1><%= title %></h1>
 
       <section><%- include("../partials/genreCard") %></section>
+
+      <%- include("../partials/sections/books", {books: books}) %>
+
       <a href="/">Home</a>
     </main>
   </body>

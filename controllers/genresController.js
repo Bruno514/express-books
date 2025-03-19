@@ -45,10 +45,14 @@ exports.getGenreEdit = async (req, res) => {
 
 exports.getGenreView = async (req, res) => {
   const { id } = req.params;
+  const books = await db.getBookByGenreId(id);
+  const genre = await db.getGenreById(id);
+  console.log(books)
 
   res.render("genres/view", {
     title: "Viewing genre",
-    genre: await db.getGenreById(id),
+    genre: genre,
+    books: books,
   });
 };
 

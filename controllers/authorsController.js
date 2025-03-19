@@ -51,8 +51,13 @@ exports.getAuthorsIndex = async (req, res) => {
 exports.getAuthorsView = async (req, res) => {
   const { id } = req.params;
   const author = await db.getAuthorById(id);
+  const books = await db.getBookByAuthorId(id);
 
-  res.render("authors/view", { title: "Viewing author", author: author });
+  res.render("authors/view", {
+    title: "Viewing author",
+    author: author,
+    books: books,
+  });
 };
 
 exports.getAuthorsAdd = async (req, res) => {

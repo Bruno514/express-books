@@ -13,7 +13,7 @@ async function getBooks() {
 
 async function getBookById(id) {
   const { rows } = await pool.query(
-    `SELECT  b.id, b.title, b.summary, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
+    `SELECT  b.id, b.title, b.genre_id, b.author_id, b.summary, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
       JOIN writers w ON b.author_id = w.id 
         JOIN genres g ON b.genre_id = g.id 
           WHERE b.id = $1`,
@@ -21,6 +21,30 @@ async function getBookById(id) {
   );
 
   return rows[0];
+}
+
+async function getBookByGenreId(id) {
+  const { rows } = await pool.query(
+    `SELECT b.id, b.title, b.genre_id, b.summary, b.pages, b.release_date, g.id AS genre_id, g.genre_name, w.author_name FROM books b 
+      JOIN writers w ON b.author_id = w.id 
+        JOIN genres g ON b.genre_id = g.id 
+          WHERE b.genre_id = $1`,
+    [id]
+  );
+
+  return rows;
+}
+
+async function getBookByAuthorId(id) {
+  const { rows } = await pool.query(
+    `SELECT  b.id, b.title,b.author_id, b.summary, b.pages, b.release_date, g.genre_name, w.author_name FROM books b 
+      JOIN writers w ON b.author_id = w.id 
+        JOIN genres g ON b.genre_id = g.id 
+          WHERE b.author_id = $1`,
+    [id]
+  );
+
+  return rows;
 }
 
 async function addBook(title, summary, authorId, genreId, pages, releaseDate) {
@@ -129,6 +153,8 @@ async function deleteAuthorById(id) {
 module.exports = {
   getBooks,
   getBookById,
+  getBookByGenreId,
+  getBookByAuthorId,
   addBook,
   editBookById,
   deleteBookById,
