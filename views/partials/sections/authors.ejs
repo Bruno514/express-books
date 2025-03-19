@@ -1,8 +1,14 @@
 <section>
   <h1>Authors</h1>
+  <% if (authors.length) { %>
+
   <ul>
     <% authors.forEach(author => { %>
     <li><%- include("../authorCard", {author: author}) %></li>
     <%}); %>
   </ul>
+
+  <% } else { %>
+    <p>No authors found</p>
+  <% }%>
 </section>

@@ -1,12 +1,14 @@
 <section>
   <h1>Books</h1>
+  <% if (locals.books.length) { %>
   <ul>
-    <% if (books.length) { %>
     <% books.forEach(function(book) {%>
     <li><%- include("../bookCard", {book: book}) %></li>
-    <%}); %>
-    <% } else {%> 
-      <p>No books found</p>
-    <% } %>
+    <% }) %>
+
   </ul>
+  <% } else { %>
+  <p>No books found</p>
+  <% } %>
+
 </section>
