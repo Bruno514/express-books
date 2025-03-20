@@ -1,6 +1,12 @@
 <article class="card">
   <h2><%= book.title %></h2>
-  <p>By <i><%= book.author_name%></i></p>
+  <p class="book-info">
+    By
+    <i
+      ><%= book.author_name%> - <%= book.release_date.toLocaleDateString() %> -
+      <%= book.pages %> pages
+    </i>
+  </p>
   <p><%= book.summary %></p>
 
   <%- include("./actions", {route: "books", id: book.id}) %>

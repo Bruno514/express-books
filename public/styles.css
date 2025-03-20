@@ -59,9 +59,12 @@ ul {
 }
 
 .card {
-  padding: var(--space-s);
+  padding: var(--space-xs);
   background-color: var(--neutral-300);
   border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
 }
 
 .card h2 {
@@ -70,6 +73,10 @@ ul {
 }
 
 .card p {
+  font-weight: 300;
+}
+
+p.book-info {
   font-weight: 200;
 }
 
