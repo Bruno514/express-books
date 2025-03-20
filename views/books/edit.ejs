@@ -79,7 +79,9 @@
 
         <label class="required" for="summary">
           Summary
-          <textarea name="summary" id="summary"><%= book.summary %></textarea>
+          <div class="textarea-wrapper">
+            <textarea name="summary" id="summary"><%= book.summary %></textarea>
+          </div>
         </label>
 
         <button type="submit">Submit</button>

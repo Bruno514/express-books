@@ -3,7 +3,7 @@
   <p class="book-info">
     By
     <i
-      ><%= book.author_name%> - <%= book.release_date.toLocaleDateString() %> -
+      ><%= book.author_name%> - <%= locals.book.release_date ? book.release_date.toLocaleDateString() : "No release date" %> -
       <%= book.pages %> pages
     </i>
   </p>

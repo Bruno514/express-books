@@ -132,14 +132,17 @@ button[type="submit"] {
   font-weight: 900;
   text-decoration: none;
   font-size: small;
-  transition: transform 450ms ease ;
+  transition: transform 450ms ease;
 }
 
-.button:hover, button:hover, .button:active, button:active {
+.button:hover,
+button:hover,
+.button:active,
+button:active {
   transform: scale(1.08);
 }
 
-button.danger{
+button.danger {
   background-color: red;
 }
 
@@ -154,8 +157,7 @@ button.danger{
 }
 
 input,
-select,
-textarea {
+select {
   display: block;
   width: 100%;
   border-radius: var(--space-2xs);
@@ -164,6 +166,20 @@ textarea {
   padding: var(--space-3xs);
 }
 
+textarea {
+  display: block;
+  width: 100%;
+  background-color: var(--neutral-300);
+  border: none
+}
+
 select {
+  padding: var(--space-3xs);
+}
+
+.textarea-wrapper {
+  border-radius: var(--space-2xs);
+  border: none;
+  background-color: var(--neutral-300);
   padding: var(--space-3xs);
 }
