@@ -47,7 +47,6 @@ exports.getGenreView = async (req, res) => {
   const { id } = req.params;
   const books = await db.getBookByGenreId(id);
   const genre = await db.getGenreById(id);
-  console.log(books)
 
   res.render("genres/view", {
     title: "Viewing genre",
@@ -82,15 +81,17 @@ exports.putGenre = [
 
     if (!errors.isEmpty()) {
       return res.status(400).render("genres/edit", {
-        title: "invalid genre fields, try again",
+        title: "Invalid genre fields, try again",
         errors: errors.array(),
       });
     }
 
     const { id } = req.params;
-    const { name, descritpion } = req.body;
+    const { name, description } = req.body;
+    console.log(req.body);
+    console.log(name);
 
-    await db.editGenreById(id, name, descritpion || null);
+    await db.editGenreById(id, name, description || null);
 
     res.redirect(`/genres/view/${id}`);
   },

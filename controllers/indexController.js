@@ -1,9 +1,12 @@
 const db = require("../db/queries");
+const { countryCodeToFlag } = require("../misc/countryCodeToFlag");
 
 exports.getIndex = async (req, res) => {
   const books = await db.getBooks();
   const genres = await db.getGenres();
-  const authors = await db.getAuthors();
+  let authors = (await db.getAuthors()).map((author) => {
+    return { ...author, flag: countryCodeToFlag(author.nationality) };
+  });
 
   res.render("index", {
     title: "Index Page",
