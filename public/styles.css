@@ -125,6 +125,11 @@ button[type="submit"] {
   font-weight: 900;
   text-decoration: none;
   font-size: small;
+  transition: transform 450ms ease ;
+}
+
+.button:hover, button:hover, .button:active, button:active {
+  transform: scale(1.08);
 }
 
 button.danger{

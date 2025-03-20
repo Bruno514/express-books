@@ -1,8 +1,12 @@
 <section>
   <h1>Genres</h1>
+  <% if (locals.genres.length) { %>
   <ul>
     <% genres.forEach(genre => { %>
     <li><%- include("../genreCard", {genre: genre}) %></li>
     <% }); %>
   </ul>
+  <% } else{ %>
+  <p>No genres found</p>
+  <% } %>
 </section>
