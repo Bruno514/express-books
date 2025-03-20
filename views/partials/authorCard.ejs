@@ -1,11 +1,17 @@
 <article class="card">
- <h2><%= author.author_name %> -  <%= author.flag%></h2>
-  <p><%= author.bio %></p>   
+  <h2><%= author.author_name %> - <%= author.flag%></h2>
+  <p><%= author.bio %></p>
 
   <section class="author-dates">
-    <p><img src="/svg/star.svg" alt="" /><%= author.birth_date%></p>
+    <% if (author.birth_date) { %>
+    <img src="/svg/star.svg" alt="" />
+    <p><%= author.birth_date.toLocaleDateString()%></p>
+
+    <% } %> <% if (author.death_date) { %>
     <span>&nbsp - &nbsp;</span>
-    <p><img src="/svg/skull.svg" alt="" /> <%= author.death_date%></p>
+    <img src="/svg/skull.svg" alt="" />
+    <p><%= author.death_date.toLocaleDateString()%></p>
+    <% } %>
   </section>
 
   <%- include("./actions", {route: "authors", id: author.id}) %>

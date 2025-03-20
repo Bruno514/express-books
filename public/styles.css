@@ -82,6 +82,8 @@ p.book-info {
 
 .author-dates {
   display: flex;
+  align-items: end;
+  gap: var(--space-3xs);
 }
 
 .actions-box {
@@ -170,7 +172,7 @@ textarea {
   display: block;
   width: 100%;
   background-color: var(--neutral-300);
-  border: none
+  border: none;
 }
 
 select {

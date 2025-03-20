@@ -29,9 +29,11 @@
 
         <label class="required" for="bio">
           Bio:
-          <textarea name="bio" id="bio" maxlength="1000" required>
-            <%=author.bio%>
-          </textarea>
+          <div class="textarea-wrapper">
+            <textarea name="bio" id="bio" maxlength="1000" required>
+              <%=author.bio%>
+            </textarea>
+          </div>
         </label>
 
         <label for="country">
@@ -45,22 +47,14 @@
 
         <div class="form-row">
           <label for="birthDate">
-            Birth:
-            <input
-              value="<%= author.birth_date %>"
-              type="date"
-              name="birthDate"
-              id="birthDate"
-            />
+            Birth: <input value="<%=
+            author.birth_date? author.birth_date.toISOString().split('T')[0] :
+            "" %>" type="date" name="birthDate" id="birthDate" />
           </label>
           <label for="deathDate">
-            Death (?):
-            <input
-              value="<%= author.death_date %>"
-              type="date"
-              name="deathDate"
-              id="deathDate"
-            />
+            Death (?): <input value="<%=
+            author.death_date ? author.death_date.toISOString().split('T')[0] :
+            "" %>" type="date" name="deathDate" id="deathDate" />
           </label>
         </div>
         <button type="submit">Submit</button>

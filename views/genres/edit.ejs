@@ -29,9 +29,11 @@
 
         <label for="description">
           Description:
-          <textarea name="description" id="description" maxlength="255">
-            <%= genre.description %>
-          </textarea>
+          <div class="textarea-wrapper">
+            <textarea name="description" id="description" maxlength="255">
+              <%= genre.description %>
+            </textarea>
+          </div>
         </label>
 
         <button type="submit">Submit</button>
