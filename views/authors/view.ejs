@@ -6,9 +6,9 @@
     <main>
       <h1><%= title %></h1>
 
-      <section><%- include("../partials/authorCard") %></section>
+      <section><%- include("../partials/authorCard", {full: true}) %></section>
 
-      <%- include("../partials/sections/books", {books: books}) %>
+      <%- include("../partials/sections/books", {books: locals.books}) %>
 
       <a href="/">Home</a>
     </main>

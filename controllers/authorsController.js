@@ -1,6 +1,7 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const { getCountries } = require("libphonenumber-js");
+const { countryCodeToFlag } = require("../misc/countryCodeToFlag");
 
 const emptyError = "can not be empty";
 const lengthError = "can not be too long";
@@ -55,7 +56,7 @@ exports.getAuthorsView = async (req, res) => {
 
   res.render("authors/view", {
     title: "Viewing author",
-    author: author,
+    author: { ...author, flag: countryCodeToFlag(author.nationality) },
     books: books,
   });
 };
