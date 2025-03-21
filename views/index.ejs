@@ -2,14 +2,12 @@
 <html lang="en">
   <%- include('partials/head') %>
   <body>
+    <%- include('partials/navbar') %>
+
     <main>
       <h1><%= title %></h1>
 
-      <a href="/books/add">Add book</a>
-      <a href="/authors/add">Add author</a>
-      <a href="/genres/add">Add genre</a>
-
-      <%- include("partials/sections/books") %> <%-
+        <%- include("partials/sections/books") %> <%-
       include("partials/sections/genres") %> <%-
       include("partials/sections/authors") %>
     </main>

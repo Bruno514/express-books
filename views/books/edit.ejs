@@ -3,6 +3,7 @@
   <%- include("../partials/head") %>
 
   <body>
+    <%- include('../partials/navbar') %>
     <main>
       <% if (locals.errors) {%>
       <ul>
@@ -67,13 +68,9 @@
             />
           </label>
           <label for="releaseDate">
-            Release date:
-            <input
-              value="<%= book.release_date ? book.release_date.toISOString().split('T')[0] : "" %>"
-              type="date"
-              name="releaseDate"
-              id="releaseDate"
-            />
+            Release date: <input value="<%= book.release_date ?
+            book.release_date.toISOString().split('T')[0] : "" %>" type="date"
+            name="releaseDate" id="releaseDate" />
           </label>
         </div>
 
