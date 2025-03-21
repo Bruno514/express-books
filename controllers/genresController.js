@@ -88,8 +88,6 @@ exports.putGenre = [
 
     const { id } = req.params;
     const { name, description } = req.body;
-    console.log(req.body);
-    console.log(name);
 
     await db.editGenreById(id, name, description || null);
 
