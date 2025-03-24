@@ -1,10 +1,15 @@
 <nav>
   <a class="nav-header" href="/">Booker Shelfer</a>
-  <input class="nav-menu" type="image" src="/svg/hamburger-menu.svg" alt="" />
-  <ul>
+  <input
+    class="nav-hamburger"
+    type="image"
+    src="/svg/hamburger-menu.svg"
+    alt=""
+  />
+  <ul class="nav-menu">
     <li>
       <div class="dropdown">
-        <span>New</span>
+        <span class="dropdown-title">New ↓</span>
         <div class="dropdown-content">
           <a href="/books/add">Book</a>
           <a href="/authors/add">Author</a>
@@ -13,8 +18,15 @@
       </div>
     </li>
 
-    <li><a href="/books">Books</a></li>
-    <li><a href="/authors">Authors</a></li>
-    <li><a href="/genres">Genres</a></li>
+    <li>
+      <div class="dropdown">
+        <span class="dropdown-title">View ↓</span>
+        <div class="dropdown-content">
+          <a href="/books">Books</a>
+          <a href="/authors">Authors</a>
+          <a href="/genres">Genres</a>
+        </div>
+      </div>
+    </li>
   </ul>
 </nav>
