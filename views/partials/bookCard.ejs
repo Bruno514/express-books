@@ -3,12 +3,12 @@
   <p class="book-info">
     By
     <i
-      ><%= book.author_name%> - <%= locals.book.release_date ? book.release_date.toLocaleDateString() : "No release date" %> -
-      <%= book.pages %> pages
+      ><%= book.author_name%> - <%= locals.book.release_date ?
+      book.release_date.toLocaleDateString() : "No release date" %> - <%=
+      book.pages %> pages
     </i>
   </p>
   <p><%= book.summary %></p>
 
   <%- include("./actions", {route: "books", id: book.id}) %>
 </article>
-

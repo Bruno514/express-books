@@ -1,6 +1,8 @@
 const { max } = require("date-fns");
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
+const CustomUnauthorizedError = require("../errors/unauthorizedError");
+const asyncHandler = require("express-async-handler");
 
 const emptyError = "can not be empty.";
 const lengthError = "can not be too long.";
@@ -95,14 +97,15 @@ exports.putGenre = [
   },
 ];
 
-exports.deleteGenre = async (req, res) => {
+exports.deleteGenre = asyncHandler(async (req, res) => {
   const { id } = req.params;
-
   const { password } = req.body;
 
   if (password === "Bruno123") {
     await db.deleteGenreById(id);
+
+    res.redirect("/");
+  } else {
+    throw new CustomUnauthorizedError("Wrong password");
   }
-  
-  res.redirect("/");
-};
+});

@@ -1,6 +1,7 @@
 const { redirect } = require("express/lib/response");
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
+const CustomUnauthorizedError = require("../errors/unauthorizedError");
 
 const emptyError = "can not be empty.";
 const lengthError = "can not be too long.";
@@ -136,7 +137,9 @@ exports.deleteBook = async (req, res) => {
 
   if (password === "Bruno123") {
     await db.deleteBookById(id);
-  }
 
-  res.redirect("/");
+    res.redirect("/");
+  } else {
+    throw new CustomUnauthorizedError("Wrong password");
+  }
 };

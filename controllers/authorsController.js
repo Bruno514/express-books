@@ -2,6 +2,7 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const { getCountries } = require("libphonenumber-js");
 const { countryCodeToFlag } = require("../misc/countryCodeToFlag");
+const CustomUnauthorizedError = require("../errors/unauthorizedError");
 
 const emptyError = "can not be empty";
 const lengthError = "can not be too long";
@@ -130,6 +131,8 @@ exports.deleteAuthor = async (req, res) => {
 
   if (password === "Bruno123") {
     await db.deleteAuthorById(id);
+  } else {
+    throw CustomUnauthorizedError("Wrong password")
   }
 
   res.redirect("/");
