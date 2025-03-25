@@ -65,7 +65,6 @@ nav .nav-menu {
   margin-left: auto;
   margin-right: var(--space-2xs);
 }
-
 nav a {
   font-weight: 400;
   font-size: var(--step--2);
@@ -84,7 +83,6 @@ nav a:active {
   margin-right: var(--space-xs);
   cursor: pointer;
 }
-
 .dropdown-content {
   display: flex;
   flex-direction: column;
