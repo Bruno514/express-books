@@ -300,3 +300,19 @@ select {
   background-color: var(--neutral-300);
   padding: var(--space-3xs);
 }
+
+dialog {
+  margin: auto;
+  padding: var(--space-2xs);
+  border: none;
+  border-radius: 1rem;
+  font-size: 16px;
+}
+dialog input {
+  font-size: 16px; /* To avoid auto-zoom on Safari */
+}
+dialog button[type="submit"] {
+  width: 100%;
+  margin-left: auto;
+  margin-top: var(--space-3xs);
+}

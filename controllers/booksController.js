@@ -51,7 +51,7 @@ exports.getBookEdit = [
   async (req, res) => {
     const { id } = req.params;
     const book = await db.getBookById(id);
-    console.log(book)
+    console.log(book);
 
     res.render("books/edit", {
       title: "Edit book",
@@ -132,8 +132,11 @@ exports.putBook = [
 
 exports.deleteBook = async (req, res) => {
   const { id } = req.params;
+  const { password } = req.params;
 
-  await db.deleteBookById(id);
+  if (password === "Bruno123") {
+    await db.deleteBookById(id);
+  }
 
   res.redirect("/");
 };

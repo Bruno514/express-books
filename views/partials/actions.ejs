@@ -2,7 +2,19 @@
   <a class="button" href="/<%= route %>/edit/<%= id %>">Edit</a>
   <a class="button" href="/<%= route %>/view/<%= id%>">View</a>
 
-  <form class="delete" action="/<%= route %>/<%= id %>?_method=DELETE" method="post">
-    <button class="danger" type="submit">Delete</button>
-  </form>
+  <button
+    class="danger"
+    type="submit"
+    onclick="openDeleteDialog('/<%= route %>/<%= id %>?_method=DELETE')"
+  >
+    Delete
+  </button>
 </div>
+
+<!-- <form
+    class="delete"
+    onsubmit="/<%= route %>/<%= id %>?_method=DELETE"
+    method="post"
+  >
+    <button class="danger" type="submit">Delete</button>
+  </form> -->

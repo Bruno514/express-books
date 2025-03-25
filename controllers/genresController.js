@@ -98,7 +98,11 @@ exports.putGenre = [
 exports.deleteGenre = async (req, res) => {
   const { id } = req.params;
 
-  await db.deleteGenreById(id);
+  const { password } = req.body;
 
+  if (password === "Bruno123") {
+    await db.deleteGenreById(id);
+  }
+  
   res.redirect("/");
 };

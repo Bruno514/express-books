@@ -126,8 +126,11 @@ exports.putAuthor = [
 
 exports.deleteAuthor = async (req, res) => {
   const { id } = req.params;
+  const { password } = req.body;
 
-  await db.deleteAuthorById(id);
+  if (password === "Bruno123") {
+    await db.deleteAuthorById(id);
+  }
 
   res.redirect("/");
 };
