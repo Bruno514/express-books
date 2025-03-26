@@ -96,7 +96,7 @@ nav a:active {
   height: 0;
   transition: max-height 0.5s ease-in, visibility 0s, opacity 0.5s linear;
   border-radius: 0.5rem;
-  min-width: 20rem;
+  min-width: 5rem;
 }
 .dropdown-title {
   transition: font-weight 150ms ease-in-out;
